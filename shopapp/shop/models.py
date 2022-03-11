@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
         else:
             return f"${self.budget}"
 
+    # Password Configuration
     @property
     def password(self):
         return self.password
@@ -32,8 +33,11 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
     
-    def can_purchase(self, item_obj): # Verifies user can purchase item
+    def can_purchase(self, item_obj): # Verifies user can purchase item with a boolean variable
         return self.budget >= item_obj.price
+
+    def can_sell(self, item_obj):  #
+        return item_obj in self.items
 
 class Item(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -50,4 +54,8 @@ class Item(db.Model):
         user.budget -= self.price
         db.session.commit()
 
+    def sell(self, user):   # Method for selling items
+        self.owner = None
+        user.budget += self.price
+        db.session.commit()
 
