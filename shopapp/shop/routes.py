@@ -5,7 +5,7 @@ from shop.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
 from shop import db
 from flask_login import login_user, logout_user, login_required, current_user
 
-@app.route('/')
+
 @app.route('/home')
 def home_page():
     return render_template("home.html")
