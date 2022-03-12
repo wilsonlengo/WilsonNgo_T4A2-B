@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SubmitField, HiddenField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from shop.models import User
 
-class RegisterForm(FlaskForm):
+class RegisterForm(FlaskForm): # Form for registration page
 
     def validate_username(self, username_to_check):
         user = User.query.filter_by(username=username_to_check.data).first()
@@ -22,14 +22,14 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(label='Create Account')
 
 
-class LoginForm(FlaskForm):
+class LoginForm(FlaskForm): # Form for login page
     username = StringField(label='User Name:', validators=[DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Sign in')
 
 
-class PurchaseItemForm(FlaskForm):
+class PurchaseItemForm(FlaskForm): # Form for item purchase
     submit = SubmitField(label='Purchase Item!')
 
-class SellItemForm(FlaskForm):
+class SellItemForm(FlaskForm): # Form for selling an item
     submit = SubmitField(label='Sell Item!')
