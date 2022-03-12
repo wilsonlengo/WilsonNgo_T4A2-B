@@ -1,1 +1,1 @@
-web: gunicorn shopapp/run:app
+web: gunicorn /shopapp/run:app
