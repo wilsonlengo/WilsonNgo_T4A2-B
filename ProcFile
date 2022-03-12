@@ -1,1 +1,1 @@
-web: sh -c '/shopapp/ && python ryn.py'
+web: gunicorn run:app
